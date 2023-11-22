@@ -1,0 +1,6 @@
+@molecules.api_HostAddress = http://localhost:5116
+
+GET {{molecules.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
