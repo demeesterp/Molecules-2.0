@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\molecules.shared\molecules.shared.csproj" />
+  </ItemGroup>
+
 </Project>
