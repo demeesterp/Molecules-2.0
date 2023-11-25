@@ -7,19 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9CC1A859-188
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0EB22BD5-D63A-40AB-86D8-8D3B70D94EB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molecules.core", "src\molecules.core\molecules.core.csproj", "{F7A2D112-3C34-43BE-B0B8-8F100C268253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.core", "src\molecules.core\molecules.core.csproj", "{F7A2D112-3C34-43BE-B0B8-8F100C268253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molcules.core.test", "test\molcules.core.test\molcules.core.test.csproj", "{60EAEFCE-C089-454E-945A-9817166054FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molcules.core.test", "test\molcules.core.test\molcules.core.test.csproj", "{60EAEFCE-C089-454E-945A-9817166054FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molecules.data", "src\molecules.data\molecules.data.csproj", "{54177D90-00E0-4F01-B695-6DE77B787845}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.data", "src\molecules.data\molecules.data.csproj", "{54177D90-00E0-4F01-B695-6DE77B787845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molecules.shared", "src\molecules.shared\molecules.shared.csproj", "{B51556CC-9871-4130-96A5-04AFC01106AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.shared", "src\molecules.shared\molecules.shared.csproj", "{B51556CC-9871-4130-96A5-04AFC01106AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molecules.console", "src\molecules.console\molecules.console.csproj", "{E8F05C9D-129A-46A2-B4E7-75D14ED3FD38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.console", "src\molecules.console\molecules.console.csproj", "{E8F05C9D-129A-46A2-B4E7-75D14ED3FD38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molecules.api", "src\molecules.api\molecules.api.csproj", "{FE4EB7E6-4E56-4E03-8055-72DD7483E9C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.api", "src\molecules.api\molecules.api.csproj", "{FE4EB7E6-4E56-4E03-8055-72DD7483E9C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molecules.ui", "src\molecules.ui\molecules.ui.csproj", "{6EF8F36B-03C0-46B0-833A-96CF4CB2EA7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.ui", "src\molecules.ui\molecules.ui.csproj", "{6EF8F36B-03C0-46B0-833A-96CF4CB2EA7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "molecule.core.common", "molecule.core.common\molecule.core.common.csproj", "{B6916EF7-4AB2-40EE-B942-08039839959F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{6EF8F36B-03C0-46B0-833A-96CF4CB2EA7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF8F36B-03C0-46B0-833A-96CF4CB2EA7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EF8F36B-03C0-46B0-833A-96CF4CB2EA7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6916EF7-4AB2-40EE-B942-08039839959F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6916EF7-4AB2-40EE-B942-08039839959F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6916EF7-4AB2-40EE-B942-08039839959F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6916EF7-4AB2-40EE-B942-08039839959F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{E8F05C9D-129A-46A2-B4E7-75D14ED3FD38} = {9CC1A859-1881-400D-BE42-641C50FF0E61}
 		{FE4EB7E6-4E56-4E03-8055-72DD7483E9C9} = {9CC1A859-1881-400D-BE42-641C50FF0E61}
 		{6EF8F36B-03C0-46B0-833A-96CF4CB2EA7B} = {9CC1A859-1881-400D-BE42-641C50FF0E61}
+		{B6916EF7-4AB2-40EE-B942-08039839959F} = {9CC1A859-1881-400D-BE42-641C50FF0E61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {615684BF-DA62-48EB-A8E6-B03BB3CB53F4}
