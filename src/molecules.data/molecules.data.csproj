@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\molecule.core.common\molecule.core.common.csproj" />
+    <ProjectReference Include="..\molecule.core.common\molecule.core.common.csproj" />
   </ItemGroup>
 
 </Project>
