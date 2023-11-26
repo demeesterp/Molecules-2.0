@@ -6,9 +6,10 @@ namespace molecules.core.domain.aggregates
     {
         public int Id { get; } = id;
 
-        public string MoleculeName { get; } = moleculeName;
+        public string MoleculeName { get; } = string.IsNullOrWhiteSpace( moleculeName) ?
+                                                throw new ArgumentNullException(nameof(details)) : moleculeName;
 
-        public CalcOrderItemDetails Details { get; set; } = details;
+        public CalcOrderItemDetails Details { get; set; } = details?? throw new ArgumentNullException(nameof(details));
 
         public void UpdateDetails(CalcOrderItemDetails details)
         {
