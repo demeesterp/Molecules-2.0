@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.8.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\molecule.core.common\molecule.core.common.csproj" />
     <ProjectReference Include="..\molecules.shared\molecules.shared.csproj" />
   </ItemGroup>

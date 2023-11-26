@@ -1,4 +1,4 @@
-﻿using molecule.core.common.calcorder;
+﻿using molecule.core.common.dbentity.calcorder;
 using molecules.core.domain.aggregates;
 
 namespace molecules.core.factories.calcorder

@@ -1,4 +1,4 @@
-﻿namespace molecule.core.common.calcorder
+﻿namespace molecule.core.common.dbentity.calcorder
 {
     public class CalcOrderItemDbEntity
     {
@@ -16,6 +16,6 @@
 
         public int CalcOrderId { get; set; }
 
-        public CalcOrderDbEntity CalcOrder { get; set; } = new CalcOrderDbEntity(); 
+        public CalcOrderDbEntity CalcOrder { get; set; } = new CalcOrderDbEntity();
     }
 }
