@@ -12,9 +12,9 @@ namespace molecules.core.tests.domain.aggregates
 
             [Fact]
             public void Should_Initialise_Members_When_Default_Constructor_Called()
-            {             
+            {
                 // Act
-                CalcOrderItem item = new CalcOrderItem(0, "moleculename", 
+                CalcOrderItem item = new(0, "moleculename",
                                     new CalcOrderItemDetails(0, "xyzfile", 
                                                             CalcBasisSetCode.BSTO3G,
                                                                 CalcOrderItemType.MolecularProperties));
@@ -33,8 +33,8 @@ namespace molecules.core.tests.domain.aggregates
                 string moleculeName = null;
 
                 // Act
-                Action action = () =>
-                         new CalcOrderItem(0, moleculeName, 
+                void action() =>
+                         new CalcOrderItem(0, moleculeName,
                                         new CalcOrderItemDetails(0, "xyz file", CalcBasisSetCode.BSTO3G, CalcOrderItemType.MolecularProperties));
 
                 // Assert
@@ -48,7 +48,7 @@ namespace molecules.core.tests.domain.aggregates
                 string moleculeName = string.Empty;
 
                 // Act
-                Action action = () =>
+                void action() =>
                          new CalcOrderItem(0, moleculeName,
                                         new CalcOrderItemDetails(0,
                                                                  "xyz file",
@@ -66,7 +66,7 @@ namespace molecules.core.tests.domain.aggregates
                 string moleculeName = "MoleculeName";
 
                 // Act
-                CalcOrderItem item = new CalcOrderItem(0, moleculeName,
+                CalcOrderItem item = new(0, moleculeName,
                                         new CalcOrderItemDetails(0, "xyz file", CalcBasisSetCode.BSTO3G, CalcOrderItemType.MolecularProperties));
 
                 // Assert
@@ -82,12 +82,12 @@ namespace molecules.core.tests.domain.aggregates
             public void Should_Throw_ArgumentNullException_When_Details_Is_Null()
             {
                 // Arrange
-                CalcOrderItem item = new CalcOrderItem(0, "moleculeName",
+                CalcOrderItem item = new(0, "moleculeName",
                                         new CalcOrderItemDetails(0, "xyz fle", CalcBasisSetCode.BSTO3G, CalcOrderItemType.MolecularProperties));
                 CalcOrderItemDetails details = null;
 
                 // Act
-                Action action = () => item.UpdateDetails(details);
+                void action() => item.UpdateDetails(details);
 
                 // Assert
                 Assert.Throws<ArgumentNullException>(action);
@@ -97,10 +97,10 @@ namespace molecules.core.tests.domain.aggregates
             public void Should_Update_Details_When_Details_Is_Valid()
             {
                 // Arrange
-                CalcOrderItem item = new CalcOrderItem(0, "moleculeName",
+                CalcOrderItem item = new(0, "moleculeName",
                      new CalcOrderItemDetails(0, "xyz file", CalcBasisSetCode.BSTO3G, CalcOrderItemType.MolecularProperties));
                 
-                CalcOrderItemDetails details = new CalcOrderItemDetails(0, "moleculeName", CalcBasisSetCode.BSTO3G, CalcOrderItemType.MolecularProperties);
+                CalcOrderItemDetails details = new(0, "moleculeName", CalcBasisSetCode.BSTO3G, CalcOrderItemType.MolecularProperties);
 
                 // Act
                 item.UpdateDetails(details);

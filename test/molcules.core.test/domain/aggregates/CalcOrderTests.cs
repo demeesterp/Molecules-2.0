@@ -16,7 +16,7 @@ namespace molecules.core.tests.aggregates
                 int id = 0;
 
                 // Act
-                CalcOrder calcOrder = new CalcOrder(id, name);
+                CalcOrder calcOrder = new(id, name);
 
                 // Assert
                 Assert.Equal(0, calcOrder.Id);
@@ -33,7 +33,7 @@ namespace molecules.core.tests.aggregates
                 int id = 1;
 
                 // Act
-                CalcOrder calcOrder = new CalcOrder(id, name);
+                CalcOrder calcOrder = new(id, name);
 
                 // Assert
                 Assert.Equal(id, calcOrder.Id);
@@ -52,7 +52,7 @@ namespace molecules.core.tests.aggregates
                 int id = 0;
 
                 // Act
-                CalcOrder calcOrder = new CalcOrder(id, name, description);
+                CalcOrder calcOrder = new(id, name, description);
 
                 // Assert
                 Assert.Equal(0, calcOrder.Id);
@@ -82,7 +82,7 @@ namespace molecules.core.tests.aggregates
             public void Should_Throw_When_AddItem_With_Null_Parameter_Is_Called()
             {
                 // Arrange
-                CalcOrder calcOrder = new CalcOrder(0, "test");
+                CalcOrder calcOrder = new(0, "test");
 
                 CalcOrderItem? toAdd = null;
 
@@ -93,9 +93,9 @@ namespace molecules.core.tests.aggregates
             public void Should_Add_Item_ToList_WhenItem_Is_Valid()
             {
                 // Arrange
-                CalcOrder calcOrder = new CalcOrder(0, "test");
+                CalcOrder calcOrder = new(0, "test");
 
-                CalcOrderItem toAdd = new CalcOrderItem(12, "Test Molecule",
+                CalcOrderItem toAdd = new(12, "Test Molecule",
                                                 new CalcOrderItemDetails(0, "xyz file",
                                                            CalcBasisSetCode.BSTO3G,
                                                              CalcOrderItemType.MolecularProperties));
@@ -116,9 +116,9 @@ namespace molecules.core.tests.aggregates
             public void Should_Remove_Item_FromList_WhenItem_Is_Valid()
             {
                 // Arrange
-                CalcOrder calcOrder = new CalcOrder(0, "test");
+                CalcOrder calcOrder = new(0, "test");
 
-                CalcOrderItem toAdd = new CalcOrderItem(100,
+                CalcOrderItem toAdd = new(100,
                                                         "Test Molecule",
                                                             new CalcOrderItemDetails(0, "xyz file",
                                                                             CalcBasisSetCode.BSTO3G,
@@ -136,9 +136,9 @@ namespace molecules.core.tests.aggregates
             public void Should_Not_Remove_Item_FromList_WhenItem_Is_Not_Found()
             {
                 // Arrange
-                CalcOrder calcOrder = new CalcOrder(0, "test");
+                CalcOrder calcOrder = new(0, "test");
 
-                CalcOrderItem toAdd = new CalcOrderItem(12, "Test Molecule", new CalcOrderItemDetails(0, "xyz file",
+                CalcOrderItem toAdd = new(12, "Test Molecule", new CalcOrderItemDetails(0, "xyz file",
                                                                             CalcBasisSetCode.BSTO3G,
                                                                                 CalcOrderItemType.MolecularProperties));
                 calcOrder.AddItem(toAdd);
