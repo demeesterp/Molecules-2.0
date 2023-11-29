@@ -1,6 +1,6 @@
-﻿using molecule.core.common.dbentity.calcorder;
+﻿using molecules.core.common.dbentity.calcorder;
 
-namespace molecule.core.common.interfaces.repositories
+namespace molecules.core.common.interfaces.repositories
 {
     public interface IMoleculeRepository
     {

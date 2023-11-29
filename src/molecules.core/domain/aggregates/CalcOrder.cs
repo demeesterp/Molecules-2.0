@@ -18,15 +18,11 @@ namespace molecules.core.domain.aggregates
             Id = id;
             Details = new CalcOrderDetails(name, description);
             CustomerName = "Default";
-            Items = new List<CalcOrderItem>();
+            Items = [];
         }
 
         public void AddItem(CalcOrderItem item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
             Items.Add(item);
         }
 

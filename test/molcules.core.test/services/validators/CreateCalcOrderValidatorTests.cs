@@ -10,7 +10,7 @@ namespace molecules.core.test.service.validators
         public void CalcOrderDetailsValidator_WhenNameIsEmpty_ReturnsError()
         {
             // Arrange
-            var calcOrderDetails = new CreateCalcOrder(null, String.Empty);
+            var calcOrderDetails = new CreateCalcOrder(string.Empty, String.Empty);
             var validator = new CreateCalcOrderValidator();
 
             // Act

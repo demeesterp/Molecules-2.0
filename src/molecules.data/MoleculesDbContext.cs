@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using molecule.core.common.dbentity.calcorder;
+using molecules.core.common.dbentity.calcorder;
 
 namespace molecules.data
 {

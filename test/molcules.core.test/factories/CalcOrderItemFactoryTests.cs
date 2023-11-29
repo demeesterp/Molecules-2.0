@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using molecule.core.common.dbentity.calcorder;
+using molecules.core.common.dbentity.calcorder;
 using molecules.core.domain.valueobjects.basisset;
 using molecules.core.domain.valueobjects.calcorderitem;
 using molecules.core.factories.calcorder;
@@ -9,23 +9,25 @@ namespace molecules.core.tests.factories
     public class CalcOrderItemFactoryTests
     {
 
-        public CalcOrderItemFactory calcOrderItemFactory { get; set; }
+        public CalcOrderItemFactory CalcOrderItemFactory { get; set; }
 
         public CalcOrderItemFactoryTests()
         {
-            calcOrderItemFactory = new CalcOrderItemFactory();
+            CalcOrderItemFactory = new CalcOrderItemFactory();
         }
 
         public static CalcOrderItemDbEntity CreateDummyCalcOrderItem(string calcType)
         {
-            CalcOrderItemDbEntity dbEntity = new CalcOrderItemDbEntity();
-            dbEntity.XYZ = "Test";
-            dbEntity.Charge = -1;
-            dbEntity.CalcType = calcType;
-            dbEntity.Id = 1;
-            dbEntity.MoleculeName = "TestMolecule";
-            dbEntity.CalcOrderId = 2;
-            dbEntity.BasissetCode = CalcBasisSetCode.B3_21G.ToString();
+            CalcOrderItemDbEntity dbEntity = new()
+            {
+                XYZ = "Test",
+                Charge = -1,
+                CalcType = calcType,
+                Id = 1,
+                MoleculeName = "TestMolecule",
+                CalcOrderId = 2,
+                BasissetCode = CalcBasisSetCode.B3_21G.ToString()
+            };
             return dbEntity;
         }
 
@@ -36,7 +38,7 @@ namespace molecules.core.tests.factories
             var dbEntity = CreateDummyCalcOrderItem(CalcOrderItemType.MolecularProperties.ToString());
 
             // Act
-            var result = calcOrderItemFactory.CreateCalcOrderItem(dbEntity);
+            var result = CalcOrderItemFactory.CreateCalcOrderItem(dbEntity);
 
             // Assert
             result.Should().NotBeNull();
@@ -57,7 +59,7 @@ namespace molecules.core.tests.factories
             var dbEntity = CreateDummyCalcOrderItem("Test");
 
             // Act
-            var result = calcOrderItemFactory.CreateCalcOrderItem(dbEntity);
+            var result = CalcOrderItemFactory.CreateCalcOrderItem(dbEntity);
 
             // Assert
             result.Should().NotBeNull();

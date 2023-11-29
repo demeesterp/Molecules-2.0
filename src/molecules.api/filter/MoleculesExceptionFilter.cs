@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using molecule.core.common.errorhandling;
+using molecules.core.common.errorhandling;
 
 namespace molecules.api.filter
 {

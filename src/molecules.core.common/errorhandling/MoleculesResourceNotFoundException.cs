@@ -1,4 +1,4 @@
-﻿namespace molecule.core.common.errorhandling
+﻿namespace molecules.core.common.errorhandling
 {
     public class MoleculesResourceNotFoundException(string message) : Exception(message)
     {

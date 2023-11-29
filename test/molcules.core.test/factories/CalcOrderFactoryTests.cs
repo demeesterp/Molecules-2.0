@@ -1,6 +1,6 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
-using molecule.core.common.dbentity.calcorder;
+using molecules.core.common.dbentity.calcorder;
 using molecules.core.domain.valueobjects.calcorderitem;
 using molecules.core.factories.calcorder;
 
@@ -24,11 +24,13 @@ namespace molecules.core.tests.factories
 
         public static CalcOrderDbEntity CreateDummyCalcOrderDbEntity(List<CalcOrderItemDbEntity> items)
         {
-            CalcOrderDbEntity retval = new CalcOrderDbEntity();
-            retval.Id = 1;
-            retval.Name = "Test";
-            retval.Description = "Test";
-            retval.CalcOrderItems = items;
+            CalcOrderDbEntity retval = new()
+            {
+                Id = 1,
+                Name = "Test",
+                Description = "Test",
+                CalcOrderItems = items
+            };
             return retval;
         }
 
@@ -36,10 +38,10 @@ namespace molecules.core.tests.factories
         public void Should_Create_Valid_CalcOrder_From_Valid_CalcOrderItemDbEntity()
         {
             // Arrange
-            var dbEntity = CreateDummyCalcOrderDbEntity(new List<CalcOrderItemDbEntity>()
-            {
+            var dbEntity = CreateDummyCalcOrderDbEntity(
+            [
                 CalcOrderItemFactoryTests.CreateDummyCalcOrderItem(CalcOrderItemType.MolecularProperties.ToString())
-            });
+            ]);
 
             // Act
             var result = calcOrderFactory.CreateCalcOrder(dbEntity);

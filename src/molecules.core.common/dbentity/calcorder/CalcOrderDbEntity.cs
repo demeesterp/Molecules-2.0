@@ -1,4 +1,4 @@
-﻿namespace molecule.core.common.dbentity.calcorder
+﻿namespace molecules.core.common.dbentity.calcorder
 {
     public class CalcOrderDbEntity
     {

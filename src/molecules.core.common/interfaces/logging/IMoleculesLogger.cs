@@ -1,4 +1,4 @@
-﻿namespace molecule.core.common.interfaces.logging
+﻿namespace molecules.core.common.interfaces.logging
 {
     public interface IMoleculesLogger
     {

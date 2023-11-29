@@ -1,4 +1,4 @@
-﻿using molecule.core.common.dbentity.calcorder;
+﻿using molecules.core.common.dbentity.calcorder;
 using molecules.core.domain.aggregates;
 
 namespace molecules.core.factories.calcorder
@@ -6,23 +6,18 @@ namespace molecules.core.factories.calcorder
     /// <summary>
     /// Factory service to create CalcOrder entity
     /// </summary>
-    public class CalcOrderFactory : ICalcOrderFactory
+    /// <remarks>
+    /// Constrcutor
+    /// </remarks>
+    /// <param name="calcOrderItemFactory">Factory for the items</param>
+    public class CalcOrderFactory(ICalcOrderItemFactory calcOrderItemFactory) : ICalcOrderFactory
     {
 
         #region dependencies
 
-        private readonly ICalcOrderItemFactory _calcOrderItemFactory;
+        private readonly ICalcOrderItemFactory _calcOrderItemFactory = calcOrderItemFactory;
 
         #endregion
-
-        /// <summary>
-        /// Constrcutor
-        /// </summary>
-        /// <param name="calcOrderItemFactory">Factory for the items</param>
-        public CalcOrderFactory(ICalcOrderItemFactory calcOrderItemFactory)
-        {
-            this._calcOrderItemFactory = calcOrderItemFactory;
-        }
 
         /// <summary>
         /// Create a new CalcOrder entity from a CalcOrderDbEntity
@@ -31,7 +26,7 @@ namespace molecules.core.factories.calcorder
         /// <returns>Completd calcorder</returns>
         public CalcOrder CreateCalcOrder(CalcOrderDbEntity dbEntity)
         {
-            CalcOrder retval = new CalcOrder(dbEntity.Id, dbEntity.Name, dbEntity.Description);
+            CalcOrder retval = new(dbEntity.Id, dbEntity.Name, dbEntity.Description);
             retval.Items.AddRange(dbEntity.CalcOrderItems.Select(_calcOrderItemFactory.CreateCalcOrderItem));
             return retval;
         }

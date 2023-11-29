@@ -17,9 +17,9 @@ namespace molecules.core.services.validators.validation.service
     {
         #region dependencies
 
-        private readonly IValidator<CreateCalcOrderItem> _createCalcOrderItemValidator = createValidator ?? throw new ArgumentNullException(nameof(createValidator));
+        private readonly IValidator<CreateCalcOrderItem> _createCalcOrderItemValidator = createValidator ;
 
-        private readonly IValidator<UpdateCalcOrderItem> _updateCalcOrderItemValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
+        private readonly IValidator<UpdateCalcOrderItem> _updateCalcOrderItemValidator = updateValidator ;
 
         #endregion
 

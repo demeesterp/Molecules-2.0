@@ -79,17 +79,6 @@ namespace molecules.core.tests.aggregates
         public class AddItemTests : CalcOrderTests
         {
             [Fact]
-            public void Should_Throw_When_AddItem_With_Null_Parameter_Is_Called()
-            {
-                // Arrange
-                CalcOrder calcOrder = new(0, "test");
-
-                CalcOrderItem? toAdd = null;
-
-                // Act
-                _ = Assert.Throws<ArgumentNullException>(() => calcOrder.AddItem(toAdd));
-            }
-            [Fact]
             public void Should_Add_Item_ToList_WhenItem_Is_Valid()
             {
                 // Arrange
@@ -118,11 +107,10 @@ namespace molecules.core.tests.aggregates
                 // Arrange
                 CalcOrder calcOrder = new(0, "test");
 
-                CalcOrderItem toAdd = new(100,
-                                                        "Test Molecule",
-                                                            new CalcOrderItemDetails(0, "xyz file",
-                                                                            CalcBasisSetCode.BSTO3G,
-                                                                                CalcOrderItemType.MolecularProperties));
+                CalcOrderItem toAdd = new(100, "Test Molecule",
+                                          new CalcOrderItemDetails(0, "xyz file",
+                                               CalcBasisSetCode.BSTO3G,
+                                               CalcOrderItemType.MolecularProperties));
                 calcOrder.AddItem(toAdd);
 
                 // Act
@@ -138,9 +126,10 @@ namespace molecules.core.tests.aggregates
                 // Arrange
                 CalcOrder calcOrder = new(0, "test");
 
-                CalcOrderItem toAdd = new(12, "Test Molecule", new CalcOrderItemDetails(0, "xyz file",
-                                                                            CalcBasisSetCode.BSTO3G,
-                                                                                CalcOrderItemType.MolecularProperties));
+                CalcOrderItem toAdd = new(12, "Test Molecule", 
+                                            new CalcOrderItemDetails(0, "xyz file",
+                                                    CalcBasisSetCode.BSTO3G,
+                                                    CalcOrderItemType.MolecularProperties));
                 calcOrder.AddItem(toAdd);
 
                 // Act

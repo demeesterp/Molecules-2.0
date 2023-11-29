@@ -1,4 +1,5 @@
-﻿using molecules.core.domain.valueobjects.calcorderitem;
+﻿using molecules.core.domain.valueobjects.basisset;
+using molecules.core.domain.valueobjects.calcorderitem;
 using molecules.core.services.validators;
 
 namespace molecules.core.test.services.validators
@@ -10,7 +11,9 @@ namespace molecules.core.test.services.validators
         public void CreateCalcOrderItemValidator_WhenMoleculeNameIsEmpty_ReturnsError()
         {
             // Arrange
-            var createCalcOrderItem = new CreateCalcOrderItem("",null);
+            var createCalcOrderItem = new CreateCalcOrderItem("",
+                                            new CalcOrderItemDetails(0, "", CalcBasisSetCode.B3_21G,
+                                                                    CalcOrderItemType.MolecularProperties));
             var validator = new CreateCalcOrderItemValidator();
 
             // Act
@@ -25,7 +28,8 @@ namespace molecules.core.test.services.validators
         public void CreateCalcOrderItemValidator_WhenMoleculeNameIsWhitespace_ReturnsError()
         {
             // Arrange
-            var createCalcOrderItem = new CreateCalcOrderItem(" ", null);
+            var createCalcOrderItem = new CreateCalcOrderItem(" ", new CalcOrderItemDetails(0, "", CalcBasisSetCode.B3_21G,
+                                                                    CalcOrderItemType.MolecularProperties));
             var validator = new CreateCalcOrderItemValidator();
 
             // Act
@@ -40,7 +44,8 @@ namespace molecules.core.test.services.validators
         public void CreateCalcOrderItemValidator_WhenMoleculeNameIsTooLong_ReturnsError()
         {
             // Arrange
-            var createCalcOrderItem = new CreateCalcOrderItem(new string('t', 251),null);
+            var createCalcOrderItem = new CreateCalcOrderItem(new string('t', 251), new CalcOrderItemDetails(0, "", CalcBasisSetCode.B3_21G,
+                                                                    CalcOrderItemType.MolecularProperties));
             var validator = new CreateCalcOrderItemValidator();
 
             // Act
