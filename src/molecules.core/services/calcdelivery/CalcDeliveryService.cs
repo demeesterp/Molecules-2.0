@@ -1,5 +1,4 @@
-﻿using molecules.core.common.interfaces.logging;
-using molecules.core.domain.aggregates;
+﻿using molecules.core.domain.aggregates;
 using molecules.core.domain.valueobjects.basisset;
 using molecules.core.domain.valueobjects.calcorderitem;
 using molecules.core.domain.valueobjects.gmscalc;
@@ -8,6 +7,7 @@ using molecules.core.factories.calcinput;
 using molecules.core.factories.calcmolecule;
 using molecules.core.services.calcmolecule;
 using molecules.core.services.calcorders;
+using molecules.shared;
 
 namespace molecules.core.services.calcdelivery
 {

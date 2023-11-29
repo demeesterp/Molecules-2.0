@@ -1,7 +1,7 @@
-﻿using molecules.core.common.interfaces.logging;
-using molecules.core.domain.valueobjects.moleculereport;
+﻿using molecules.core.domain.valueobjects.moleculereport;
 using molecules.core.factories.reports;
 using molecules.core.services.calcmolecule;
+using molecules.shared;
 
 namespace molecules.core.services.reports
 {

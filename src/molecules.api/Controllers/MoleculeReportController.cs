@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using molecules.api.filter;
-using molecules.core.common.interfaces.logging;
 using molecules.core.domain.valueobjects.moleculereport;
 using molecules.core.services.reports;
+using molecules.shared;
 
 namespace molecules.api.Controllers
 {
