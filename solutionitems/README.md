@@ -32,3 +32,6 @@ for a reference of all commands : [Entity Framework Core tools reference - .NET 
 - **Logging in ASP.NET Code** :
 	- [Medium Article] (https://medium.com/@mehmetozkaya/logging-in-asp-net-core-2-0-6c2d6a19a76d)
 	- [Microsoft Article] (https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-5.0)
+
+
+https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
