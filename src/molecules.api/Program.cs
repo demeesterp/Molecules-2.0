@@ -15,14 +15,16 @@ namespace molecules.api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
             builder.Configuration.AddEnvironmentVariables();
 
             // Add services to the container.
             builder.Services.AddControllers().AddJsonOptions(
                         options => {
-                        options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                    });
+                            options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                        });
 
             builder.Services.AddMvcCore(option =>
             {
@@ -39,7 +41,7 @@ namespace molecules.api
 
             builder.Services.AddAuthorization();
 
-            builder.Services.AddMoleculesServices();
+            builder.Services.AddMoleculesServices(builder.Configuration);
 
             builder.Services.AddDbContext<MoleculesDbContext>(options =>
                                                     options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionString")));

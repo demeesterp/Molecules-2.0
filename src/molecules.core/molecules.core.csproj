@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\molecules.core.common\molecules.core.common.csproj" />
+    <ProjectReference Include="..\molecules.logger\molecules.logger.csproj" />
     <ProjectReference Include="..\molecules.shared\molecules.shared.csproj" />
   </ItemGroup>
 
