@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.api", "src\molecu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "molecules.logger", "src\molecules.logger\molecules.logger.csproj", "{A72B51AE-96DF-471D-B2C8-3CD7EF4C6709}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoleculesGui", "MoleculesGui\MoleculesGui.csproj", "{73161CD6-7772-4BC7-8EEE-63CF5308009E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoleculesGui", "MoleculesGui\MoleculesGui.csproj", "{73161CD6-7772-4BC7-8EEE-63CF5308009E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
