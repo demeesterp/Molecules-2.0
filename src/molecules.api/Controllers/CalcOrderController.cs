@@ -37,7 +37,6 @@ namespace molecules.api.Controllers
         /// </summary>
         /// <returns>All CalcOrders</returns>
         /// <response code="200">A list of all CalcOrders</response>
-        /// <response code="204">No CalcOrders found</response>
         /// <response code="500">An unexpected error happend</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -46,15 +45,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<IList<CalcOrder>>> ListAsync()
         {
             _logger.LogInformation("Get the list of all Calculation Orders called");
-            var result = await _calcOrderService.ListAsync();
-            if ( result.Count > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NoContent();
-            }
+           return Ok(await _calcOrderService.ListAsync());
         }
 
         /// <summary>
@@ -83,7 +74,6 @@ namespace molecules.api.Controllers
         /// <param name="name">The name to lookup</param>
         /// <returns>The list of CalcOrders that corresponds</returns>
         /// <response code="200">A list of all CalcOrders</response>
-        /// <response code="204">No CalcOrders found</response>
         /// <response code="500">An unexpected error happend</response>
         [HttpGet]
         [Route("Name/{name}")]
@@ -93,15 +83,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<IList<CalcOrder>>> GetByNameAsync([FromRoute] string name)
         {
             _logger.LogInformation($"Get a calculation order by name:{name}");
-            var result = await _calcOrderService.GetByNameAsync(name);
-            if ( result.Count > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NoContent();
-            }
+            return Ok(await _calcOrderService.GetByNameAsync(name));
         }
         /// <summary>
         /// Create a new CalcOrders
@@ -120,7 +102,6 @@ namespace molecules.api.Controllers
         {
             _logger.LogInformation($"Create a calculation order with name:{createCalcOrder.Name} " +
                                         $"and description:{createCalcOrder.Description}");
-
             return StatusCode(StatusCodes.Status201Created, await _calcOrderService.CreateAsync(createCalcOrder));
 
         }
@@ -143,11 +124,8 @@ namespace molecules.api.Controllers
         [ProducesResponseType(typeof(ServiceValidationError), StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<CalcOrder>> UpdateAsync([FromRoute] int id, [FromBody] UpdateCalcOrder updateCalcOrder)
         {
-            _logger.LogInformation($"Update a calculation order with name:{updateCalcOrder.Name} and description:{updateCalcOrder.Description}");
-            
-            var result = await _calcOrderService.UpdateAsync(id, updateCalcOrder);
-            
-            return Ok(result);
+            _logger.LogInformation($"Update a calculation order with name:{updateCalcOrder.Name} and description:{updateCalcOrder.Description}");  
+            return Ok(await _calcOrderService.UpdateAsync(id, updateCalcOrder));
         }
 
         /// <summary>
@@ -155,7 +133,7 @@ namespace molecules.api.Controllers
         /// </summary>
         /// <param name="id">The id of the calcorder to be deleted</param>
         /// <returns></returns>
-        /// <response code="200">The CalcOrders was deleted</response>
+        /// <response code="204">The CalcOrders was deleted</response>
         /// <response code="404">No CalcOrder found for the specified id</response>
         /// <response code="500">An unexpected error happend</response>
         [HttpDelete]
@@ -167,7 +145,7 @@ namespace molecules.api.Controllers
         {
             _logger.LogInformation($"Delete a calculation order with id:{id}");
             await _calcOrderService.DeleteAsync(id);
-            return Ok();
+            return StatusCode(StatusCodes.Status204NoContent);
         }
 
 
@@ -188,7 +166,6 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<CalcOrderItem>> CreateCalcOrderItemAsync([FromRoute] int calcOrderId, [FromBody] CreateCalcOrderItem createCalcOrderItem)
         {
             _logger.LogInformation($"Create calcorder item for calcOrder {calcOrderId} and molecule {createCalcOrderItem.MoleculeName} with details {createCalcOrderItem.Details}");
-
             return StatusCode(StatusCodes.Status201Created, await _calcOrderItemService.CreateAsync(calcOrderId, createCalcOrderItem));
 
         }
@@ -210,8 +187,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<CalcOrderItem>> UpdateCalcOrderItemAsync([FromRoute] int calcOrderItemId, [FromBody] UpdateCalcOrderItem updateCalcOrderItem)
         {
             _logger.LogInformation($"Update calcorder item with id {calcOrderItemId}");
-
-            return StatusCode(StatusCodes.Status202Accepted, await _calcOrderItemService.UpdateAsync(calcOrderItemId, updateCalcOrderItem));
+            return Ok(await _calcOrderItemService.UpdateAsync(calcOrderItemId, updateCalcOrderItem));
         }
 
         /// <summary>
@@ -231,7 +207,7 @@ namespace molecules.api.Controllers
         {
             _logger.LogInformation($"Delete calcorder item with id {id}");
             await _calcOrderItemService.DeleteAsync(id);
-            return Ok();
+            return StatusCode(StatusCodes.Status204NoContent);
         }
 
     }

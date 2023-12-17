@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using molecules.core.common.errorhandling;
+using molecules.shared;
 
 namespace molecules.api.filter
 {
@@ -16,7 +17,7 @@ namespace molecules.api.filter
         /// <param name="context">The exception context</param>
         public void OnException(ExceptionContext context)
         {
-            GetLogger(context)?.LogError(context.Exception, "An exception was handle by the global exception handler");
+            GetLogger(context)?.LogError(context.Exception, "An exception was handled by the global exception handler");
             if ( context.Exception is ValidationException validationException)
             {
                 context.Result = new UnprocessableEntityObjectResult(new ServiceValidationError()
@@ -31,7 +32,7 @@ namespace molecules.api.filter
             {
                 context.Result = new NotFoundObjectResult(new ServiceError()
                 {
-                    DisplayMessage = "The requested resource was not found"
+                    DisplayMessage = moleculesResourceNotFoundException.Message
                 });
             }
             else
@@ -46,10 +47,9 @@ namespace molecules.api.filter
         }
 
 
-        private ILogger<MoleculesExceptionFilter>? GetLogger(ExceptionContext context)
+        private IMoleculesLogger? GetLogger(ExceptionContext context)
         {
-            var loggerFactory = context.HttpContext.RequestServices.GetService(typeof(ILoggerFactory)) as ILoggerFactory;
-            return loggerFactory?.CreateLogger<MoleculesExceptionFilter>();
+            return context.HttpContext.RequestServices.GetService(typeof(IMoleculesLogger)) as IMoleculesLogger;
         }
     }
 }

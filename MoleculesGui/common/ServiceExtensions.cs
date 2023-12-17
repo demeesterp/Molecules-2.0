@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MoleculesGui.Services;
 using MoleculesGui.Services.OrderBook;
+using MoleculesGui.shared.httpclient_helper;
 using Polly;
 using Polly.Extensions.Http;
+using System.Net;
 
 namespace MoleculesGui.common
 {
@@ -30,11 +32,19 @@ namespace MoleculesGui.common
         }
 
 
+        private static IServiceCollection RegisterServices(this IServiceCollection services)
+        {
+            services.AddSingleton<MoleculesHttpClient>();
+
+            return services;
+        }
+
+
         private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
         {
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
-                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                .OrResult(msg => msg.StatusCode == HttpStatusCode.NotFound)
                 .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
         }
 

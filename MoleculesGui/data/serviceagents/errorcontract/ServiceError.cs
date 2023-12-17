@@ -1,9 +1,9 @@
-﻿namespace molecules.api.filter
+﻿namespace MoleculesGui.data.serviceagents.errorcontract
 {
     /// <summary>
     /// Gives information about a service error
     /// </summary>
-    public class ServiceError
+    public class ServiceError : IServiceError
     {
         /// <summary>
         /// Default constructor
@@ -15,5 +15,14 @@
         /// Message to display to the user
         /// </summary>
         public string DisplayMessage { get; set; } = "An unexpected error happend please contact support";
+
+        /// <summary>
+        /// Get the standard error message
+        /// </summary>
+        /// <returns>standard error message</returns>
+        public string GetErrorMsg()
+        {
+            return DisplayMessage;
+        }
     }
 }

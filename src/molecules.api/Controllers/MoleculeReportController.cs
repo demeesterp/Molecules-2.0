@@ -45,15 +45,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<MoleculeAtomsChargeReport>> GetMoleculeAtomsChargeReportAsync([FromRoute] int moleculeid)
         {
             _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
-            var result = await _moleculeReportService.GetMoleculeAtomsChargeReportAsync(moleculeid);
-            if (result.Count > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NoContent();
-            }
+            return Ok(await _moleculeReportService.GetMoleculeAtomsChargeReportAsync(moleculeid));
         }
 
         /// <summary>
@@ -69,15 +61,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<MoleculeAtomOrbitalReport>> GetMoleculeAtomOrbitalReportAsync([FromRoute] int moleculeid)
         {
             _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
-            var result = await _moleculeReportService.GetMoleculeAtomOrbitalReportAsync(moleculeid);
-            if (result.Count > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NoContent();
-            }
+            return Ok(await _moleculeReportService.GetMoleculeAtomOrbitalReportAsync(moleculeid));
         }
 
         /// <summary>
@@ -93,15 +77,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<MoleculeBondsReport>> GetMoleculeBondsReportsAsync([FromRoute] int moleculeid)
         {
             _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
-            var result = await _moleculeReportService.GetMoleculeBondsReportsAsync(moleculeid);
-            if ( result.Count > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NoContent();
-            }
+            return Ok(await _moleculeReportService.GetMoleculeBondsReportsAsync(moleculeid));
            
         }
 
@@ -118,15 +94,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<MoleculeAtomsPopulationReport>> GetMoleculePopulationReportAsync([FromRoute] int moleculeid)
         {
             _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
-            var result = await _moleculeReportService.GetMoleculePopulationReportAsync(moleculeid);
-            if (result.Count > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NoContent();
-            }
+            return Ok(await _moleculeReportService.GetMoleculePopulationReportAsync(moleculeid));
         }
 
         /// <summary>
@@ -142,15 +110,7 @@ namespace molecules.api.Controllers
         public async Task<ActionResult<List<GeneralMoleculeReport>>> GetGeneralMoleculeReportAsync([FromRoute] int moleculeid)
         {
             _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
-            var result = await _moleculeReportService.GetGeneralMoleculeReportsAsync(moleculeid);
-            if (result.Count > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NoContent();
-            }
+            return Ok(await _moleculeReportService.GetGeneralMoleculeReportsAsync(moleculeid));
         }   
 
     }
