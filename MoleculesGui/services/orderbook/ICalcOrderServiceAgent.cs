@@ -1,29 +1,30 @@
 ﻿using MoleculesGui.data.serviceagents.orderbook;
+using System.Reactive;
 
 namespace MoleculesGui.Services.OrderBook
 {
     public interface ICalcOrderServiceAgent
     {
-        Task<IList<CalcOrder>> ListAsync();
+        IObservable<IList<CalcOrder>> List();
 
-        Task<CalcOrder> GetAsync(int id);
+        IObservable<CalcOrder> Get(int id);
 
-        Task<IList<CalcOrder>> GetByNameAsync(string name);
+        IObservable<IList<CalcOrder>> GetByName(string name);
 
-        Task<CalcOrder> CreateAsync(CreateCalcOrder createCalcOrder);
-
-
-        Task<CalcOrder> UpdateAsync(int id, UpdateCalcOrder updateCalcOrder);
-
-        Task DeleteAsync(int id);
+        IObservable<CalcOrder> Create(CreateCalcOrder createCalcOrder);
 
 
-        Task<CalcOrderItem> CreateCalcOrderItemAsync(int calcOrderId, CreateCalcOrderItem createCalcOrderItem);
+        IObservable<CalcOrder> Update(int id, UpdateCalcOrder updateCalcOrder);
+
+        IObservable<Unit> Delete(int id);
 
 
-        Task<CalcOrderItem> UpdateCalcOrderItemAsync(int calcOrderId, CreateCalcOrderItem createCalcOrderItem);
+        IObservable<CalcOrderItem> CreateCalcOrderItem(int calcOrderId, CreateCalcOrderItem createCalcOrderItem);
 
 
-        Task DeleteCalcOrderItemAsync(int calcOrderItemId);
+        IObservable<CalcOrderItem> UpdateCalcOrderItem(int calcOrderId, CreateCalcOrderItem createCalcOrderItem);
+
+
+        IObservable<Unit> DeleteCalcOrderItem(int calcOrderItemId);
     }
 }

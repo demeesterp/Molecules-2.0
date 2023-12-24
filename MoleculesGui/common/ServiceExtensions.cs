@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MoleculesGui.services.molecules;
 using MoleculesGui.Services;
 using MoleculesGui.Services.OrderBook;
 using MoleculesGui.shared.httpclient_helper;
@@ -35,6 +36,8 @@ namespace MoleculesGui.common
         private static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddSingleton<MoleculesHttpClient>();
+            services.AddSingleton<ICalcOrderServiceAgent, CalcOrderServiceAgent>();
+            services.AddSingleton<IMoleculesServiceAgent, MoleculesServiceAgent>();
 
             return services;
         }

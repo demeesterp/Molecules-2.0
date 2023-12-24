@@ -1,16 +1,19 @@
 ﻿using MoleculesGui.data.serviceagents.orderbook;
 using MoleculesGui.shared.httpclient_helper;
-using System.Net.Http.Json;
+using System.Reactive;
 
 namespace MoleculesGui.Services.OrderBook
 {
     public class CalcOrderServiceAgent : ICalcOrderServiceAgent
     {
 
-        private readonly HttpClient _httpClient;
+        #region dependencies
 
-        private readonly MoleculesHttpClient _moleculesHttpClient;
+        private readonly HttpClient             _httpClient;
 
+        private readonly MoleculesHttpClient    _moleculesHttpClient;
+
+        #endregion
 
         public CalcOrderServiceAgent(HttpClient httpClient, MoleculesHttpClient moleculesHttpClient) 
         { 
@@ -18,54 +21,49 @@ namespace MoleculesGui.Services.OrderBook
             _moleculesHttpClient = moleculesHttpClient;
         }
 
-        public async Task<CalcOrder> CreateAsync(CreateCalcOrder createCalcOrder)
+        public IObservable<CalcOrder> Create(CreateCalcOrder createCalcOrder)
         {
-            HttpResponseMessage result = await _httpClient.PostAsJsonAsync("", createCalcOrder);
-
-            
-
-
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Post<CalcOrder, CreateCalcOrder>(_httpClient, "/calcorders", createCalcOrder);
         }
 
-        public Task<CalcOrderItem> CreateCalcOrderItemAsync(int calcOrderId, CreateCalcOrderItem createCalcOrderItem)
+        public IObservable<CalcOrderItem> CreateCalcOrderItem(int calcOrderId, CreateCalcOrderItem createCalcOrderItem)
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Post<CalcOrderItem, CreateCalcOrderItem>(_httpClient, $"/calcorders/{calcOrderId}/calcorderitem", createCalcOrderItem);
         }
 
-        public Task DeleteAsync(int id)
+        public IObservable<Unit> Delete(int id)
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Delete<Unit>(_httpClient, $"/calcorders/{id}");
         }
 
-        public Task DeleteCalcOrderItemAsync(int calcOrderItemId)
+        public IObservable<Unit> DeleteCalcOrderItem(int calcOrderItemId)
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Delete<Unit>(_httpClient, $"/calcorders/calcorderitem/{calcOrderItemId}");
         }
 
-        public Task<CalcOrder> GetAsync(int id)
+        public IObservable<CalcOrder> Get(int id)
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Get<CalcOrder>(_httpClient, $"/calcorders//{id}");
         }
 
-        public Task<IList<CalcOrder>> GetByNameAsync(string name)
+        public IObservable<IList<CalcOrder>> GetByName(string name)
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Get<List<CalcOrder>>(_httpClient, $"/calcorders/name/{name}");
         }
 
-        public Task<IList<CalcOrder>> ListAsync()
+        public IObservable<IList<CalcOrder>> List()
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Get<List<CalcOrder>>(_httpClient, $"/calcorders");
         }
 
-        public Task<CalcOrder> UpdateAsync(int id, UpdateCalcOrder updateCalcOrder)
+        public IObservable<CalcOrder> Update(int id, UpdateCalcOrder updateCalcOrder)
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Put<CalcOrder, UpdateCalcOrder>(_httpClient, $"/calcorders/{id}", updateCalcOrder);
         }
 
-        public Task<CalcOrderItem> UpdateCalcOrderItemAsync(int calcOrderId, CreateCalcOrderItem createCalcOrderItem)
+        public IObservable<CalcOrderItem> UpdateCalcOrderItem(int calcOrderId, CreateCalcOrderItem createCalcOrderItem)
         {
-            throw new NotImplementedException();
+            return _moleculesHttpClient.Put<CalcOrderItem, CreateCalcOrderItem>(_httpClient, $"/calcorders/{calcOrderId}/calcorderitem", createCalcOrderItem);
         }
     }
 }

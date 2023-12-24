@@ -76,7 +76,7 @@ namespace molecules.api.Controllers
         /// <response code="200">A list of all CalcOrders</response>
         /// <response code="500">An unexpected error happend</response>
         [HttpGet]
-        [Route("Name/{name}")]
+        [Route("name/{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ServiceError), StatusCodes.Status500InternalServerError)]

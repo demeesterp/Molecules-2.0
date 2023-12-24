@@ -21,7 +21,6 @@ namespace MoleculesGui.shared.httpclient_helper
         }
 
         public IObservable<ReturnType> Put<ReturnType, ArgType>(HttpClient httpClient, string urlFragment, ArgType argument)
-                             where ReturnType : new()
         {
             var response = Observable.FromAsync(() => httpClient.PutAsJsonAsync(urlFragment, argument));
             return response.SelectMany(async item => await HandleResponseAsync<ReturnType>(item, HttpMethod.Put));
