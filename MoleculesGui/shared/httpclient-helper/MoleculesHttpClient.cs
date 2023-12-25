@@ -75,19 +75,19 @@ namespace MoleculesGui.shared.httpclient_helper
         {
             if (!await TryHandleHttpErrorResponseAsync(httpResponse, httpMethod))
             {
-                throw new UnKnownHttpException(new HttpErrorDetails(httpMethod,
+                return await Observable.Throw<ReturnType>(new UnKnownHttpException(new HttpErrorDetails(httpMethod,
                             HttpStatusCode.UnprocessableContent,
-                              httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available"));
+                              httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available")));
+
             }
             var result = await httpResponse.Content.ReadFromJsonAsync<ReturnType>();
-            if ( result != null)
+            if (result != null)
             {
                 return result;
             }
-            throw new UnKnownHttpException(new HttpErrorDetails(httpMethod,
+            return await Observable.Throw<ReturnType>(new UnKnownHttpException(new HttpErrorDetails(httpMethod,
                                                      HttpStatusCode.UnprocessableContent,
-                                                        httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available"));
-
+                                                        httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available")));
         }
 
         private async Task<bool> TryHandleHttpErrorResponseAsync(HttpResponseMessage httpResponse, HttpMethod httpMethod)
@@ -98,10 +98,10 @@ namespace MoleculesGui.shared.httpclient_helper
                 var validationError = await httpResponse.Content.ReadFromJsonAsync<ServiceValidationError>();
                 if (validationError != null)
                 {
-                    throw new ServerValidationException(validationError,
-                        new HttpErrorDetails(httpMethod,
-                                               HttpStatusCode.UnprocessableContent,
-                                                httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request uri available"));
+                    return await Observable.Throw<bool>(new ServerValidationException(validationError,
+                                                    new HttpErrorDetails(httpMethod,
+                                                        HttpStatusCode.UnprocessableContent,
+                                                             httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request uri available")));
                 }
             }
             else
@@ -109,10 +109,10 @@ namespace MoleculesGui.shared.httpclient_helper
                 var serverError = await httpResponse.Content.ReadFromJsonAsync<ServiceError>();
                 if (serverError != null)
                 {
-                    throw new ServerErrorException(serverError,
+                    return await Observable.Throw<bool>(new ServerErrorException(serverError,
                         new HttpErrorDetails(httpMethod,
                                                 HttpStatusCode.UnprocessableContent,
-                                                  httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available"));
+                                                  httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available")));
                 }
             }
             return false;

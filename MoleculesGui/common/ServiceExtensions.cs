@@ -2,6 +2,7 @@
 using MoleculesGui.services.molecules;
 using MoleculesGui.Services;
 using MoleculesGui.Services.OrderBook;
+using MoleculesGui.shared.error;
 using MoleculesGui.shared.httpclient_helper;
 using Polly;
 using Polly.Extensions.Http;
@@ -14,8 +15,7 @@ namespace MoleculesGui.common
         public static IServiceCollection RegisterServices(this IServiceCollection services,
                                                                     IWebAssemblyHostEnvironment environment)
         {
-            services.RegisterHttpClient(environment);
-            return services;
+           return services.RegisterServices().RegisterHttpClient(environment);
         }
 
         private static IServiceCollection RegisterHttpClient(this IServiceCollection services, 
@@ -36,8 +36,10 @@ namespace MoleculesGui.common
         private static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddSingleton<MoleculesHttpClient>();
+            services.AddSingleton<ErrorHandlingService>();
             services.AddSingleton<ICalcOrderServiceAgent, CalcOrderServiceAgent>();
             services.AddSingleton<IMoleculesServiceAgent, MoleculesServiceAgent>();
+            services.AddSingleton<IMoleculesOverViewService, MoleculesOverViewService>();
 
             return services;
         }
