@@ -1,13 +1,28 @@
 ﻿namespace MoleculesGui.data.serviceagents.orderbook
 {
-    public class CalcOrderItem(int id, string moleculeName, CalcOrderItemDetails details)
+    public class CalcOrderItem
     {
-        public int Id { get; } = id;
+        public CalcOrderItem()
+        {
+            MoleculeName = string.Empty;
+            Details = new CalcOrderItemDetails();
+        }
 
-        public string MoleculeName { get; } = string.IsNullOrWhiteSpace(moleculeName) ?
-                                                throw new ArgumentException(nameof(details)) : moleculeName;
+        public CalcOrderItem(int id, string moleculeName, CalcOrderItemDetails details)
+        {
+            Id = id;
+            MoleculeName = string.IsNullOrWhiteSpace(moleculeName)?
+                                        throw new ArgumentException(nameof(details))
+                                            : moleculeName;
+            Details = details;
+        }
 
-        public CalcOrderItemDetails Details { get; set; } = details;
+
+        public int Id { get; set; }
+
+        public string MoleculeName { get; set; }
+
+        public CalcOrderItemDetails Details { get; set; }
 
     }
 }

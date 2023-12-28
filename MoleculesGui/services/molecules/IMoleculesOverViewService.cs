@@ -4,8 +4,7 @@ namespace MoleculesGui.services.molecules
 {
     public interface IMoleculesOverViewService
     {
-        void RetrieveMolecules(string findquery);
+        IObservable<List<MoleculesOverviewItemVM>> RetrieveMolecules(string findquery);
 
-        List<MoleculesOverviewItemVM> MoleculesOverviewVMs { get; set; }
     }
 }

@@ -2,10 +2,10 @@
 {
     public class CalcOrder
     {
-        public int Id { get; private set; }
-        public CalcOrderDetails Details { get; private set; }
+        public int Id { get; set; }
+        public CalcOrderDetails Details { get; set; }
         public string CustomerName { get; }
-        public List<CalcOrderItem> Items { get; private set; }
+        public List<CalcOrderItem> Items { get; set; }
 
         public CalcOrder(int id, string name, string description = "")
         {
@@ -17,6 +17,13 @@
             Details = new CalcOrderDetails(name, description);
             CustomerName = "Default";
             Items = [];
+        }
+
+        public CalcOrder()
+        {
+            CustomerName = "Default";
+            Items = [];
+            Details = new CalcOrderDetails();
         }
 
         public void AddItem(CalcOrderItem item)

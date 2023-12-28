@@ -23,7 +23,13 @@ namespace MoleculesGui.data.viewmodel
 
         public CalcMolecule GetCalcMolecule()
         {
-            return new CalcMolecule(Id, CalcOrderName, BasisSetName, Name);
+            return new CalcMolecule()
+            {
+                Id = Id,
+                MoleculeName = Name,
+                OrderName = CalcOrderName,
+                BasisSet = BasisSetName,
+            };
         }
 
 

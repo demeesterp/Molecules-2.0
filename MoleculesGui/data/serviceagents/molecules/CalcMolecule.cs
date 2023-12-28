@@ -2,29 +2,21 @@
 {
     public class CalcMolecule
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
-        public string OrderName { get; }
+        public string OrderName { get; set; }
 
-        public string BasisSet { get; }
+        public string BasisSet { get; set; }
 
-        public string MoleculeName { get; }
+        public string MoleculeName { get; set; }
 
         public Molecule? Molecule { get; set; }
 
-        public CalcMolecule(int id, string orderName, string basisset, string moleculeName)
+        public CalcMolecule()
         {
-            Id = id;
-            OrderName = orderName;
-            BasisSet = basisset;
-            MoleculeName = moleculeName;
-        }
-
-        public CalcMolecule(string orderName, string basisSet, string moleculeName)
-        {
-            OrderName = orderName;
-            BasisSet = basisSet;
-            MoleculeName = moleculeName;
+            OrderName = "";
+            BasisSet = "";
+            MoleculeName = "";
         }
     }
 }

@@ -61,29 +61,43 @@ namespace MoleculesGui.shared.httpclient_helper
 
         private async Task<Unit> HandleResponseAsync(HttpResponseMessage httpResponse, HttpMethod httpMethod)
         {
-            if (!await TryHandleHttpErrorResponseAsync(httpResponse, httpMethod) )
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                return Unit.Default;
+            }
+            else if ( !await TryHandleHttpErrorResponseAsync(httpResponse, httpMethod) )
             {
                 throw new UnKnownHttpException(
                                 new HttpErrorDetails(httpMethod,
                                      HttpStatusCode.UnprocessableContent,
                                      httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available"));
             }
-            return Unit.Default;
+            else
+            {
+                return await Observable.
+                                Throw<Unit>(new UnKnownHttpException
+                                                ( new HttpErrorDetails(httpMethod,
+                                                    HttpStatusCode.UnprocessableContent,
+                                                    httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available")));
+            }
         }
 
         private async Task<ReturnType> HandleResponseAsync<ReturnType>( HttpResponseMessage httpResponse, HttpMethod httpMethod)
         {
-            if (!await TryHandleHttpErrorResponseAsync(httpResponse, httpMethod))
+            if ( httpResponse.IsSuccessStatusCode)
             {
-                return await Observable.Throw<ReturnType>(new UnKnownHttpException(new HttpErrorDetails(httpMethod,
-                            HttpStatusCode.UnprocessableContent,
-                              httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available")));
-
+                var result = await httpResponse.Content.ReadFromJsonAsync<ReturnType>();
+                if (result != null)
+                {
+                    return result;
+                }
             }
-            var result = await httpResponse.Content.ReadFromJsonAsync<ReturnType>();
-            if (result != null)
+            else if (!await TryHandleHttpErrorResponseAsync(httpResponse, httpMethod))
             {
-                return result;
+                    return await Observable.Throw<ReturnType>(new UnKnownHttpException(new HttpErrorDetails(httpMethod,
+                                HttpStatusCode.UnprocessableContent,
+                                  httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available")));
+
             }
             return await Observable.Throw<ReturnType>(new UnKnownHttpException(new HttpErrorDetails(httpMethod,
                                                      HttpStatusCode.UnprocessableContent,
@@ -92,7 +106,7 @@ namespace MoleculesGui.shared.httpclient_helper
 
         private async Task<bool> TryHandleHttpErrorResponseAsync(HttpResponseMessage httpResponse, HttpMethod httpMethod)
         {
-            if (httpResponse.IsSuccessStatusCode) return false;
+            if (httpResponse.IsSuccessStatusCode) return true; // When success nothing to do
             if (httpResponse.StatusCode == HttpStatusCode.UnprocessableContent)
             {
                 var validationError = await httpResponse.Content.ReadFromJsonAsync<ServiceValidationError>();

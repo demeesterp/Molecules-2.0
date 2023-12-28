@@ -1,7 +1,6 @@
 ﻿using MoleculesGui.data.serviceagents.molecules;
 using MoleculesGui.data.viewmodel;
 using MoleculesGui.shared.error;
-using MoleculesGui.shared.httpclient_helper;
 using System.Reactive.Linq;
 
 namespace MoleculesGui.services.molecules
@@ -17,12 +16,6 @@ namespace MoleculesGui.services.molecules
         #endregion
 
 
-        #region state
-
-        public List<MoleculesOverviewItemVM> MoleculesOverviewVMs { get; set; } = new List<MoleculesOverviewItemVM>();
-
-        #endregion
-
         public MoleculesOverViewService(IMoleculesServiceAgent moleculesServiceAgent, ErrorHandlingService errorHandlingService)
         {
             _moleculesServiceAgent = moleculesServiceAgent;
@@ -30,13 +23,12 @@ namespace MoleculesGui.services.molecules
         }
 
 
-        public void RetrieveMolecules(string findquery)
+        public IObservable<List<MoleculesOverviewItemVM>> RetrieveMolecules(string findquery)
         {
-            _moleculesServiceAgent.
+            return _moleculesServiceAgent.
                     GetByName(findquery)
                     .Catch<IList<CalcMolecule>, Exception>(HandleError)
-                    .Select(result => result.Select( resultItem => new MoleculesOverviewItemVM(resultItem)).ToList())
-                        .Subscribe(items => MoleculesOverviewVMs = items);
+                    .Select(result => result.Select(resultItem => new MoleculesOverviewItemVM(resultItem)).ToList());
         }
 
         private IObservable<List<CalcMolecule>> HandleError(Exception ex)
