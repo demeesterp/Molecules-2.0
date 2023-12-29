@@ -15,6 +15,8 @@ namespace molecules.core.services.reports
 
         private readonly IMoleculesLogger _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
+
+
         public async Task<List<GeneralMoleculeReport>> GetGeneralMoleculeReportsAsync(int moleculeId)
         {
             _logger.LogInformation($"GetGeneralMoleculeReportsAsync({moleculeId})");
@@ -48,6 +50,13 @@ namespace molecules.core.services.reports
             _logger.LogInformation($"GetMoleculePopulationReportAsync({moleculeId})");
             var molecule = await _calcMoleculeService.GetAsync(moleculeId);
             return _moleculeReportFactory.GetMoleculePopulationReport(molecule?.Molecule);
+        }
+
+        public async Task<List<MoleculeAtomPositionReport>> GetAtomPositionReportAsync(int moleculeId)
+        {
+            _logger.LogInformation($"GetAtomPositionReport({moleculeId})");
+            var molecule = await _calcMoleculeService.GetAsync(moleculeId);
+            return _moleculeReportFactory.GetAtomPositionReport(molecule?.Molecule);
         }
     }
 }

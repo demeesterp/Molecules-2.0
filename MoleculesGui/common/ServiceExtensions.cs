@@ -15,8 +15,7 @@ namespace MoleculesGui.common
         public static IServiceCollection RegisterServices(this IServiceCollection services,
                                                                     IWebAssemblyHostEnvironment environment)
         {
-           return services.RegisterServices()
-                            .RegisterHttpClient(environment);
+           return services.RegisterServices().RegisterHttpClient(environment);
         }
 
         private static IServiceCollection RegisterHttpClient(this IServiceCollection services, 
@@ -29,8 +28,15 @@ namespace MoleculesGui.common
             })
             .AddPolicyHandler(GetRetryPolicy());
             
-            // Molecule analysis service agents
+            // Molecule service agents
             services.AddHttpClient<IMoleculesServiceAgent, MoleculesServiceAgent>(client =>
+            {
+                client.BaseAddress = new Uri(environment.GetApiBasePath());
+            })
+           .AddPolicyHandler(GetRetryPolicy());
+
+            // Molecule report service agents
+            services.AddHttpClient<IMoleculesReportServiceAgent, MoleculesReportServiceAgent>(client =>
             {
                 client.BaseAddress = new Uri(environment.GetApiBasePath());
             })
@@ -46,7 +52,8 @@ namespace MoleculesGui.common
             services.AddSingleton<ErrorHandlingService>();
             services.AddSingleton<ICalcOrderServiceAgent, CalcOrderServiceAgent>();
             services.AddSingleton<IMoleculesServiceAgent, MoleculesServiceAgent>();
-            services.AddSingleton<IMoleculesOverViewService, MoleculesOverViewService>();
+            services.AddSingleton<IMoleculesAnalysisService, MoleculesAnalysisService>();
+            services.AddSingleton<IMoleculesReportServiceAgent, MoleculesReportServiceAgent>();
             return services;
         }
 

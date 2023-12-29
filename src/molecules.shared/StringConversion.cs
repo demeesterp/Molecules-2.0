@@ -40,32 +40,32 @@ namespace molecules.shared
 
         public static string ToString(decimal? input)
         {
-            return input?.ToString(CultureInfo.CreateSpecificCulture("en-US")) ?? string.Empty;
+            return input?.ToString(CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         public static string ToString(decimal? input, string format)
         {
-            return input?.ToString(format, CultureInfo.CreateSpecificCulture("en-US")) ?? string.Empty;
+            return input?.ToString(format, CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         public static string ToString(double? input)
         {
-            return input?.ToString(CultureInfo.CreateSpecificCulture("en-US")) ?? string.Empty;
+            return input?.ToString(CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         public static string ToString(double? input, string format)
         {
-            return input?.ToString(format, CultureInfo.CreateSpecificCulture("en-US")) ?? string.Empty;
+            return input?.ToString(format, CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         public static string ToString(int? input)
         {
-            return input?.ToString(CultureInfo.CreateSpecificCulture("en-US")) ?? string.Empty;
+            return input?.ToString(CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         public static string ToString(long? input)
         {
-            return input?.ToString(CultureInfo.CreateSpecificCulture("en-US")) ?? string.Empty;
+            return input?.ToString(CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
 

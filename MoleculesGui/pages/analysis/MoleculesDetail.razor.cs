@@ -6,17 +6,25 @@ namespace MoleculesGui.pages.analysis
 {
     public partial class MoleculesDetail:ComponentBase
     {
-        [Inject] private IMoleculesOverViewService? overViewService { get; set; }
+        [Inject]
+        private IMoleculesAnalysisService? analysisService { get; set; }
 
         [Parameter]
         public int MoleculeId { get; set; }
 
-
-        public MoleculesOverviewItemVM CurrentMolecule { get; set; }
+        public MoleculeReportVM CurrentMoleculeReport { get; set; } = new MoleculeReportVM(0);
 
 
         protected override void OnInitialized()
         {
+            analysisService?
+                .GetReport(MoleculeId)
+                .Subscribe(report =>
+                {
+                    CurrentMoleculeReport = report;
+                    this.StateHasChanged();
+                }
+            );
         }
 
     }

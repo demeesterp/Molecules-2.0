@@ -14,6 +14,8 @@ namespace molecules.core.factories.reports
 
         List<MoleculeAtomOrbitalReport> GetMoleculeAtomOrbitalReport(Molecule? molecule);
 
+        List<MoleculeAtomPositionReport> GetAtomPositionReport(Molecule? molecule);
+
 
     }
 }

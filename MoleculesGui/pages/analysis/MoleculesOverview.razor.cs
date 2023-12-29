@@ -8,7 +8,7 @@ namespace MoleculesGui.pages.analysis
     public partial class MoleculesOverview : ComponentBase
     {
         #region datamembers
-        [Inject] private IMoleculesOverViewService? overViewService { get; set; }
+        [Inject] private IMoleculesAnalysisService? overViewService { get; set; }
 
         private List<MoleculesOverviewItemVM> Molecules { get; set; } = new List<MoleculesOverviewItemVM>();
 
@@ -18,7 +18,7 @@ namespace MoleculesGui.pages.analysis
 
         protected override void OnInitialized()
         {
-            overViewService?.RetrieveMolecules("%")
+            overViewService?.SearchCalculatedMolecules("%")
                             .Subscribe(molecules =>
                             {
                                 Molecules = molecules;
@@ -28,7 +28,7 @@ namespace MoleculesGui.pages.analysis
 
         private void OnSearchMoleculeClick(MouseEventArgs args)
         {
-            overViewService?.RetrieveMolecules(searchTerm)
+            overViewService?.SearchCalculatedMolecules(searchTerm)
                             .Subscribe(molecules =>
                             {
                                 Molecules = molecules;

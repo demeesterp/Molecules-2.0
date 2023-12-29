@@ -1,11 +1,32 @@
 ﻿using molecules.core.domain.valueobjects.moleculereport;
 using molecules.core.domain.valueobjects.molecules;
 using molecules.shared;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
 
 namespace molecules.core.factories.reports
 {
     public class MoleculeReportFactory : IMoleculeReportFactory
     {
+        public List<MoleculeAtomPositionReport> GetAtomPositionReport(Molecule? molecule)
+        {
+            List<MoleculeAtomPositionReport> report = [];
+            if (molecule == null) return report;
+            foreach (var atom in molecule.Atoms)
+            {
+                MoleculeAtomPositionReport toAdd = new MoleculeAtomPositionReport()
+                {
+                    MoleculeName = molecule.Name,
+                    AtomPosition = atom.Position,
+                    AtomSymbol = atom.Symbol,
+                    PosX = atom.PosX,
+                    PosZ = atom.PosZ,
+                    PosY = atom.PosY
+                };
+                report.Add(toAdd);
+            }
+            return report;
+        }
 
         public List<GeneralMoleculeReport> GetGeneralMoleculeReport(Molecule? molecule)
         {
