@@ -52,14 +52,33 @@ namespace molecules.core.factories.reports
                                                   MoleculeName = molecule.Name,
                                                   OrbitalPosition = item.Position,
                                                   OrbitalSymbol = $"{item.Symbol}",
+                                                  Population = item.MullikenPopulation,
+                                                  PopulationHOMO = item.MullikenPopulationHomo,
+                                                  PopulationLUMO = item.MullikenPopulationLumo,
                                                   PopulationFraction = item.MullikenPopulation / atom.MullikenPopulation,
                                                   PopulationFractionHOMO = item.MullikenPopulationHomo / atom.MullikenPopulationHOMO,
                                                   PopulationFractionLUMO = item.MullikenPopulationLumo / atom.MullikenPopulationLUMO
                                              })
                 {
-                    toAdd.Configuration += orbitalReport.OrbitalSymbol + "(" + StringConversion.ToString(orbitalReport.PopulationFraction, "0.00") + ")";
-                    toAdd.ConfigurationLewisAcid += orbitalReport.OrbitalSymbol + "(" + StringConversion.ToString(orbitalReport.PopulationFractionLUMO, "0.00") + ")";
-                    toAdd.ConfigurationLewisBase += orbitalReport.OrbitalSymbol + "(" + StringConversion.ToString(orbitalReport.PopulationFractionHOMO, "0.00") + ")";
+                    toAdd.Configuration += orbitalReport.OrbitalSymbol 
+                        + "(" + StringConversion.ToString(orbitalReport.PopulationFraction, "0.00") + ")";
+                    toAdd.ConfigurationLewisAcid += orbitalReport.OrbitalSymbol 
+                        + "(" + StringConversion.ToString(orbitalReport.PopulationFractionLUMO, "0.00") + ")";
+                    toAdd.ConfigurationLewisBase += orbitalReport.OrbitalSymbol 
+                        + "(" + StringConversion.ToString(orbitalReport.PopulationFractionHOMO, "0.00") + ")";
+
+
+                    toAdd.ConfigurationItems.Add(new ConfigurationReportItem(orbitalReport.OrbitalSymbol, 
+                                                                                orbitalReport.Population, 
+                                                                                    orbitalReport.PopulationFraction));
+
+                    toAdd.ConfigurationItemsLewisBase.Add(new ConfigurationReportItem(orbitalReport.OrbitalSymbol,
+                                                                                orbitalReport.PopulationHOMO,
+                                                                                    orbitalReport.PopulationFractionHOMO));
+
+                    toAdd.ConfigurationItemsLewisAcid.Add(new ConfigurationReportItem(orbitalReport.OrbitalSymbol,
+                                                                                orbitalReport.PopulationLUMO,
+                                                                                    orbitalReport.PopulationFractionLUMO));
                 }
                 report.Add(toAdd);
             }

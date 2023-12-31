@@ -20,5 +20,11 @@
 
         public string ConfigurationLewisBase { get; set; } = string.Empty;
 
+        public List<ConfigurationReportItem> ConfigurationItems { get; set; } = new List<ConfigurationReportItem>();
+
+        public List<ConfigurationReportItem> ConfigurationItemsLewisBase { get; set; } = new List<ConfigurationReportItem>();
+
+        public List<ConfigurationReportItem> ConfigurationItemsLewisAcid { get; set; } = new List<ConfigurationReportItem>();
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿@page "/moleculesdetail/{MoleculeId:int}"
 <section class="mb-2">
-    <h3 class="mb-2">Molecule : @CurrentMoleculeReport.MoleculeName</h3>
+    <h3 class="mb-2">Molecule : @CurrentMoleculeReport.MoleculeName with Id : @CurrentMoleculeReport.MoleculeId</h3>
     <ul class="nav nav-tabs mb-2" id="MoleculeReportsTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" 
@@ -48,22 +48,37 @@
                             </td>
                             <td>
                                 <div class="d-flex flex-row">
-                                    <div class="w-25">
+                                    <div class="w-15">
                                         <b>Neutral:</b>
                                     </div>
-                                    <div>@atomItem.Configuration</div>
+                                    @foreach (var configItem in @atomItem.ConfigurationItems)
+                                    {
+                                        <div class="fw-config">
+                                           @configItem.ToString()
+                                        </div>
+                                    }                                 
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <div class="w-25">
+                                    <div class="w-15">
                                         <b>Lewis Acid:</b>
                                     </div>
-                                    <div>@atomItem.ConfigurationLewisAcid</div>
+                                    @foreach (var configItem in @atomItem.ConfigurationItemsLewisAcid)
+                                    {
+                                        <div class="fw-config">
+                                            @configItem.ToString()
+                                        </div>
+                                    }
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <div class="w-25">
+                                    <div class="w-15">
                                         <b>Lewis Base:</b>
                                     </div>
-                                    <div>@atomItem.ConfigurationLewisBase</div>
+                                    @foreach (var configItem in @atomItem.ConfigurationItemsLewisBase)
+                                    {
+                                        <div class="fw-config">
+                                            @configItem.ToString()
+                                        </div>
+                                    }
                                 </div>
                             </td>
                         </tr>

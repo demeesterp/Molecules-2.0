@@ -8,6 +8,10 @@
         private decimal? _populationFractionLUMO;
 
 
+        private decimal? _population;
+        private decimal? _populationHOMO;
+        private decimal? _populationLUMO;
+
 
         public string MoleculeName { get; set; } = "";
         public string AtomID { get; set; } = "";
@@ -44,6 +48,39 @@
             set
             {
                 _populationFractionLUMO = value.HasValue ? Math.Round(value.Value, 6) : null;
+            }
+        }
+        public decimal? Population
+        {
+            get
+            {
+                return _population;
+            }
+            set
+            {
+                _population = value.HasValue ? Math.Round(value.Value, 6) : null;
+            }
+        }
+        public decimal? PopulationHOMO
+        {
+            get
+            {
+                return _populationHOMO;
+            }
+            set
+            {
+                _populationHOMO = value.HasValue ? Math.Round(value.Value, 6) : null;
+            }
+        }
+        public decimal? PopulationLUMO
+        {
+            get
+            {
+                return _populationLUMO;
+            }
+            set
+            {
+                _populationLUMO = value.HasValue ? Math.Round(value.Value, 6) : null;
             }
         }
     }

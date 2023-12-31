@@ -15,8 +15,10 @@ namespace MoleculesGui.data.viewmodel
             Configuration = report.Configuration;
             ConfigurationLewisAcid = report.ConfigurationLewisAcid;
             ConfigurationLewisBase = report.ConfigurationLewisBase;
+            ConfigurationItems = report.ConfigurationItems.ConvertAll(i => new ConfigurationReportItemVm(i));
+            ConfigurationItemsLewisBase = report.ConfigurationItemsLewisBase.ConvertAll(i => new ConfigurationReportItemVm(i));
+            ConfigurationItemsLewisAcid = report.ConfigurationItemsLewisAcid.ConvertAll(i => new ConfigurationReportItemVm(i));
         }
-
 
         public string MoleculeName { get; set; }
 
@@ -35,6 +37,12 @@ namespace MoleculesGui.data.viewmodel
         public decimal? MullLewisBase { get; set; }
 
         public string ConfigurationLewisBase { get; set; }
+
+        public List<ConfigurationReportItemVm> ConfigurationItems { get; set; }
+
+        public List<ConfigurationReportItemVm> ConfigurationItemsLewisBase { get; set; }
+
+        public List<ConfigurationReportItemVm> ConfigurationItemsLewisAcid { get; set; }
 
     }
 }
