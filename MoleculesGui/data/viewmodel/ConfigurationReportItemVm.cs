@@ -23,5 +23,13 @@ namespace MoleculesGui.data.viewmodel
         {
             return Symbol + "(" + StringConversion.ToString(PopulationFraction, "0.00") + ")";
         }
+
+        public decimal ColorFraction
+        {
+            get
+            {
+                return Math.Min(0.8m, Math.Abs(PopulationFraction ?? 0));
+            }
+        }
     }
 }
