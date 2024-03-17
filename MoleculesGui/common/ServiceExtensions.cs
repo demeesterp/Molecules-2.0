@@ -6,6 +6,7 @@ using MoleculesGui.shared.error;
 using MoleculesGui.shared.httpclient_helper;
 using Polly;
 using Polly.Extensions.Http;
+using Polly.Retry;
 using System.Net;
 
 namespace MoleculesGui.common
@@ -58,7 +59,7 @@ namespace MoleculesGui.common
         }
 
 
-        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        private static AsyncRetryPolicy<HttpResponseMessage> GetRetryPolicy()
         {
             return HttpPolicyExtensions
                 .HandleTransientHttpError()

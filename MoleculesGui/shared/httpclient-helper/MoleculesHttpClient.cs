@@ -104,7 +104,7 @@ namespace MoleculesGui.shared.httpclient_helper
                                                         httpResponse.RequestMessage?.RequestUri?.ToString() ?? "No request ui available")));
         }
 
-        private async Task<bool> TryHandleHttpErrorResponseAsync(HttpResponseMessage httpResponse, HttpMethod httpMethod)
+        private async static Task<bool> TryHandleHttpErrorResponseAsync(HttpResponseMessage httpResponse, HttpMethod httpMethod)
         {
             if (httpResponse.IsSuccessStatusCode) return true; // When success nothing to do
             if (httpResponse.StatusCode == HttpStatusCode.UnprocessableContent)

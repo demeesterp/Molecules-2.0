@@ -1,4 +1,6 @@
-﻿namespace MoleculesGui.data.viewmodel
+﻿using System.Text;
+
+namespace MoleculesGui.data.viewmodel
 {
     public class MoleculeReportVM
     {
@@ -19,6 +21,22 @@
 
 
         public List<GeneralMoleculeReportItemVm> ReportItems { get; set; }
+
+
+        public string GetXyz()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine($"{AtomPositions.Count}");
+            builder.AppendLine(MoleculeName);
+
+            foreach(var atom in AtomPositions)
+            {
+                builder.AppendLine($"{atom.AtomSymbol} {atom.PosX:0.0000} {atom.PosY:0.0000} {atom.PosZ:0.0000}");
+            }
+
+            return builder.ToString();
+        }
 
     }
 }
