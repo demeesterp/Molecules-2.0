@@ -3,11 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using molecules.console.App.Services;
 using molecules.console.constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using molecules.shared;
 
 namespace molecules.console
 {
@@ -15,7 +11,7 @@ namespace molecules.console
     {
         #region dependencies
 
-        private readonly ILogger<MoleculesApp> _logger;
+        private readonly IMoleculesLogger _logger;
 
         private readonly IConfiguration _configuration;
 
@@ -30,7 +26,7 @@ namespace molecules.console
         public MoleculesApp(CalcDeliveryServices calcDeliveryApp,
                                     MoleculeReportService moleculeReportApp,
                                         IConfiguration configuration,
-                                            ILogger<MoleculesApp> logger,
+                                            IMoleculesLogger logger,
                                                 IHostApplicationLifetime hostApplicationLifetime)
         {
             _logger = logger;

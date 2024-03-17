@@ -1,7 +1,12 @@
 ﻿@page "/moleculesdetail/{MoleculeId:int}"
 <section class="mb-2">
     <h3 class="mb-2">Molecule : @CurrentMoleculeReport.MoleculeName with Id : @CurrentMoleculeReport.MoleculeId</h3>
-    <div class="accordion" id="accordionExplanation">
+    <div class="mb-2 h-25 w-100">
+        <canvas id="moleculedisplay">
+
+        </canvas>
+    </div>
+    <div class="accordion mb-2" id="accordionExplanation">
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button" 
@@ -166,16 +171,19 @@
                             <td>
                                 @atomItem.AtomID
                             </td>
-                            <td>
+                            <td style="--fraction:@atomItem.ColorFractionCHelpGCharge"
+                                class="@(atomItem.CHelpGCharge < 0 ? "fw-charge-blue" : "fw-charge-red")">
                                @atomItem.CHelpGCharge
                             </td>
                             <td>
                                 @atomItem.MullNeutral
                             </td>
-                            <td>
+                            <td style="--fraction:@atomItem.ColorFractionMullLewisAcid"
+                                class="@(atomItem.MullLewisAcid < 0 ? "fw-charge-blue" : "fw-charge-red")">
                                 @atomItem.MullLewisAcid
                             </td>
-                            <td>
+                            <td style="--fraction:@atomItem.ColorFractionMullLewisBase"
+                                class="@(atomItem.MullLewisBase < 0 ? "fw-charge-blue" : "fw-charge-red")">
                                 @atomItem.MullLewisBase
                             </td>
                         </tr>

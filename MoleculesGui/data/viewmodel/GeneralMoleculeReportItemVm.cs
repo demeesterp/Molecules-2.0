@@ -26,15 +26,21 @@ namespace MoleculesGui.data.viewmodel
 
         public decimal? CHelpGCharge { get; set; }
 
+        public decimal ColorFractionCHelpGCharge => Math.Abs(CHelpGCharge ?? 0);
+
         public decimal? MullNeutral { get; set; }
 
         public string Configuration { get; set; }
 
         public decimal? MullLewisAcid { get; set; }
 
+        public decimal ColorFractionMullLewisAcid => Math.Abs(MullLewisAcid ?? 0);
+
         public string ConfigurationLewisAcid { get; set; }
 
         public decimal? MullLewisBase { get; set; }
+
+        public decimal? ColorFractionMullLewisBase => Math.Abs(MullLewisBase ?? 0);
 
         public string ConfigurationLewisBase { get; set; }
 
