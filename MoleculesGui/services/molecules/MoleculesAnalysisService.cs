@@ -46,12 +46,18 @@ namespace MoleculesGui.services.molecules
 
            var atomPositionObservable = _moleculesReportServiceAgent.GetAtomPositionReport(moleculeId)
                            .Catch<List<MoleculeAtomPositionReport>, Exception>(HandleError<List<MoleculeAtomPositionReport>>);
-            
 
-            return generalReportObservable.CombineLatest(atomPositionObservable).Select(item => new MoleculeReportVM(moleculeId)
-                    {  
-                        ReportItems = item.First.ConvertAll(item => new GeneralMoleculeReportItemVm(item)),
-                        AtomPositions = item.Second.ConvertAll(item => new MoleculeAtomPositionReportItemVm(item))
+
+            var moleculeBondObservable = _moleculesReportServiceAgent.GetMoleculeBondsReport(moleculeId)
+                            .Catch<List<MoleculeBondsReport>, Exception>(HandleError<List<MoleculeBondsReport>>);
+
+
+            return generalReportObservable.CombineLatest(atomPositionObservable, moleculeBondObservable,
+                    (generalReport, atomPosition, moleculeBond) => new MoleculeReportVM(moleculeId)
+                    {
+                        ReportItems = generalReport.ConvertAll(item => new GeneralMoleculeReportItemVm(item)),
+                        AtomPositions = atomPosition.ConvertAll(item => new MoleculeAtomPositionReportItemVm(item)),
+                        MoleculeBonds = moleculeBond.ConvertAll(item => new MoleculeBondsReportItemVm(item))
                     });
         }
 

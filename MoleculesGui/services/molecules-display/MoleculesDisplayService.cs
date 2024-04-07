@@ -1,9 +1,7 @@
 ﻿using MoleculesGui.data.viewmodel;
 using NCDK;
 using NCDK.Default;
-using NCDK.Graphs;
 using NCDK.IO;
-using NCDK.Layout;
 using NCDK.Numerics;
 
 namespace MoleculesGui.services.molecules_display
@@ -13,33 +11,31 @@ namespace MoleculesGui.services.molecules_display
         public static string GetMolFile(MoleculeReportVM moleculeReport)
         {
             var molecule = new AtomContainer();
-            foreach(var atom in moleculeReport.AtomPositions)
+
+            // Add atoms
+            foreach (var atom in moleculeReport.AtomPositions)
             {
                 var currentAtom = new Atom(atom.AtomSymbol,
-                                                new Vector3(Convert.ToDouble(atom.PosX??0),
-                                                             Convert.ToDouble(atom.PosY??0),
-                                                             Convert.ToDouble(atom.PosZ??0)));
-
-                molecule.Atoms.Add(currentAtom);
-
-                
+                    new Vector3(Convert.ToDouble(atom.PosX ?? 0),
+                                 Convert.ToDouble(atom.PosY ?? 0),
+                                 Convert.ToDouble(atom.PosZ ?? 0)));
+                currentAtom.Id = atom.AtomPosition.ToString();
+                molecule.Add(currentAtom);
             }
 
+            // Add bonds
+            foreach (var bond in moleculeReport.MoleculeBonds)
+            {
+                if ( bond.BondOrder is not null)
+                {
+                    IAtom atom1 = molecule.Atoms.First(i => i.Id == bond.Atom1Pos.ToString());
+                    IAtom atom2 = molecule.Atoms.First(i => i.Id == bond.Atom2Pos.ToString());
+                    molecule.AddBond(atom1, atom2, bond.BondOrderEnum());
+                }
+            }
 
-            molecule.AddBond(molecule.Atoms[0], molecule.Atoms[1], BondOrder.Single, BondStereo.None);
-
-            // Generate bonds
-            //var result = ConnectivityChecker.PartitionIntoMolecules(molecule);
-
-            // Generate 2D coordinates
-            //ar sdg = new StructureDiagramGenerator(molecule);
-            //g.GenerateCoordinates();
-
-            // Write to Molfile
-            var writer = new StringWriter();
-            var mdlWriter = new MDLV2000Writer(writer);
-
-
+            using var writer = new StringWriter();
+            using var mdlWriter = new MDLV2000Writer(writer);
             mdlWriter.Write(molecule);
             mdlWriter.Close();
 

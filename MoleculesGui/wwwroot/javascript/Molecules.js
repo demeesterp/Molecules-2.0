@@ -5,18 +5,21 @@
     canvas.styles.atoms_useJMOLColors = true;
     canvas.styles.bonds_splitColor = true;
     // make bonds thicker
-    canvas.styles.bonds_width_2D = 3;
+    canvas.styles.bonds_width_2D = 1;
     canvas.styles.bonds_color = 'red';
     canvas.styles.atoms_display = true;
     // change the background color to black
-    canvas.styles.backgroundColor = 'blue';
+    canvas.styles.backgroundColor = 'white';
     // clear overlaps to show z-depth
     canvas.styles.bonds_clearOverlaps_2D = true;
+
+    canvas.styles.atoms_font_families = ['Arial', 'sans-serif'];
+    canvas.styles.atoms_font_size_2D = 8;
 
     // Convert the molecule data to a ChemDoodle molecule
     var molecule = ChemDoodle.readMOL(moleculeData);
 
-    molecule.scaleToAverageBondLength(30);
+    // molecule.scaleToAverageBondLength(60);
 
     // Add labels to the atoms
     for (var i = 0; i < molecule.atoms.length; i++) {

@@ -149,10 +149,12 @@ namespace molecules.core.factories.reports
                         BondID = $"{atom1?.Symbol}{atom1?.Position}-{atom2?.Symbol}{atom2?.Position}",
                         Distance = bond.Distance,
                         BondOrder = bond.BondOrder,
+                        Atom1Pos = bond.Atom1Position,
+                        Atom2Pos = bond.Atom2Position,
                         OverlapPopulation = bond.OverlapPopulation,
                         OverlapPopulationHOMO = bond.OverlapPopulationHOMO,
                         OverlapPopulationLUMO = bond.OverlapPopulationLUMO
-                    });
+                    }); ;
                 }
             }
             return report;

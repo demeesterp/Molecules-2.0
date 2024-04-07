@@ -10,6 +10,7 @@ namespace MoleculesGui.data.viewmodel
             MoleculeId = moleculeId;
             AtomPositions = new List<MoleculeAtomPositionReportItemVm>();
             ReportItems = new List<GeneralMoleculeReportItemVm>();
+            MoleculeBonds = new List<MoleculeBondsReportItemVm>();
         }
 
         public string MoleculeName => ReportItems.Select(item => item.MoleculeName).FirstOrDefault("");
@@ -21,6 +22,9 @@ namespace MoleculesGui.data.viewmodel
 
 
         public List<GeneralMoleculeReportItemVm> ReportItems { get; set; }
+
+
+        public List<MoleculeBondsReportItemVm> MoleculeBonds { get; set; }
 
 
         public string GetXyz()

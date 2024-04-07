@@ -73,7 +73,7 @@ namespace molecules.api.Controllers
         [ProducesResponseType(typeof(ServiceError), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<MoleculeBondsReport>> GetMoleculeBondsReportsAsync([FromRoute] int moleculeid)
         {
-            _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
+            _logger.LogInformation($"GetMoleculeBondsReports by moleculeid:{moleculeid}");
             return Ok(await _moleculeReportService.GetMoleculeBondsReportsAsync(moleculeid));
            
         }
@@ -89,7 +89,7 @@ namespace molecules.api.Controllers
         [ProducesResponseType(typeof(ServiceError), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<MoleculeAtomsPopulationReport>> GetMoleculePopulationReportAsync([FromRoute] int moleculeid)
         {
-            _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
+            _logger.LogInformation($"GetMoleculePopulationReport by moleculeid:{moleculeid}");
             return Ok(await _moleculeReportService.GetMoleculePopulationReportAsync(moleculeid));
         }
 
@@ -104,7 +104,7 @@ namespace molecules.api.Controllers
         [ProducesResponseType(typeof(ServiceError), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<List<GeneralMoleculeReport>>> GetGeneralMoleculeReportAsync([FromRoute] int moleculeid)
         {
-            _logger.LogInformation($"GetMoleculeAtomsChargeReport by moleculeid:{moleculeid}");
+            _logger.LogInformation($"GetGeneralMoleculeReport by moleculeid:{moleculeid}");
             return Ok(await _moleculeReportService.GetGeneralMoleculeReportsAsync(moleculeid));
         }
 
