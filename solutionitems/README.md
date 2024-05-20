@@ -15,7 +15,7 @@ We use [Serilog.Extensions.Logging](https://github.com/serilog/serilog-extension
 
 We use entity framework core migrations to manage the database schema.
 
-## common commends
+## common commands
 
 - dotnet ef migrations add <migration_name>  --startup-project ../../molecules.api
 - dotnet ef migrations script --startup-project ../../molecules.api --idempotent --output molecules.sql
